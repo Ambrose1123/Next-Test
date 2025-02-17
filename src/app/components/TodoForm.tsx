@@ -2,15 +2,43 @@
 
 import { useState } from "react";
 
-export default function TodoForm() {
+interface TodoFormProps {
+  addTodo: (newTodo: {
+    activity: string;
+    price: number;
+    type: string;
+    bookingRequired: boolean;
+    accessibility: number;
+  }) => void;
+}
+
+export default function TodoForm({ addTodo }: TodoFormProps) {
   const [activity, setActivity] = useState("");
   const [price, setPrice] = useState(0);
   const [type, setType] = useState("education");
   const [bookingRequired, setBookingRequired] = useState(false);
   const [accessibility, setAccessibility] = useState(0.5);
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Pass the form data to the parent component through addTodo
+    addTodo({
+      activity,
+      price,
+      type,
+      bookingRequired,
+      accessibility,
+    });
+    // Reset form fields after submitting
+    setActivity("");
+    setPrice(0);
+    setType("education");
+    setBookingRequired(false);
+    setAccessibility(0.5);
+  };
+
   return (
-    <form className="p-4 border rounded-lg shadow-lg max-w-md mx-auto bg-white text-black">
+    <form onSubmit={handleSubmit} className="p-4 border rounded-lg shadow-lg max-w-md mx-auto bg-white text-black">
       <h2 className="text-xl font-semibold mb-4">Add To-Do Item</h2>
 
       {/* Activity Input */}
@@ -88,7 +116,7 @@ export default function TodoForm() {
 
       {/* Submit Button */}
       <button
-        type="button"
+        type="submit"
         className="
           mt-3 px-4 py-2 rounded-md text-white 
           bg-blue-600 hover:bg-blue-700 
