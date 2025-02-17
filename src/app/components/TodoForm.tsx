@@ -58,7 +58,7 @@ export default function TodoForm({ addTodo }: TodoFormProps) {
         <input
           type="number"
           value={price}
-          onChange={(e) => setPrice(Number(e.target.value))}
+          onChange={(e) => setPrice(Math.max(0, Number(e.target.value)))} //made sure the number wont be negative
           className="border p-2 w-full rounded-md text-black bg-gray-100"
         />
       </label>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import TodoForm from "./components/TodoForm";
-import TodoList from "./components/Todolist";  // Corrected to import TodoList
+import TodoList from "./components/Todolist";  
 
 export default function Home() {
   const [todos, setTodos] = useState<Array<{
@@ -44,7 +44,7 @@ export default function Home() {
 
   return (
     <main className="p-6">
-      <h1 className="text-3xl font-bold text-center mb-6">To-Do List App</h1>
+      <h1 className="text-3xl font-bold text-center mb-6">Build your To-Do List !</h1>
       <TodoForm addTodo={addTodo} />
       <TodoList todos={todos} onDeleteTodo={deleteTodo} />
 

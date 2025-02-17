@@ -15,7 +15,7 @@ interface TodoItemProps {
         <div>
           <p>
             <strong className="text-blue-600">{todo.activity}</strong> 
-            <span className="text-green-600"> (${todo.price})</span>
+            <span className="text-red-600"> (${todo.price})</span>
           </p>
           <p className="text-sm text-gray-500">
             Type: {todo.type} | Accessibility: {todo.accessibility}
